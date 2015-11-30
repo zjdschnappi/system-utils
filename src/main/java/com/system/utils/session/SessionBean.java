@@ -7,6 +7,8 @@ public class SessionBean {
 	private String sessionId;
 	private String username;
 	private String nickname;
+	private String token;
+	private String imgSrc;
 	private Date dieTime;
 	
 
@@ -48,6 +50,22 @@ public class SessionBean {
 
 	public void setDieTime(Date dieTime) {
 		this.dieTime = dieTime;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getImgSrc() {
+		return imgSrc;
+	}
+
+	public void setImgSrc(String imgSrc) {
+		this.imgSrc = imgSrc;
 	}
 
 	

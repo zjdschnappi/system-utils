@@ -1,5 +1,7 @@
 package com.system.utils.session;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SessionService {
@@ -36,10 +38,11 @@ public class SessionService {
 		}
 	}
 	
-	public boolean isAliveSession(String sessionId){
+	public boolean isAliveSession(String sessionId) throws ParseException{
 		SessionBean sessionBean = sessionDao.findBySessionId(sessionId);
-		Date date = new Date();
-		if(date.after(sessionBean.getDieTime())){
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = df.parse(df.format(new Date()));
+		if(date.before(sessionBean.getDieTime())){
 			return true;
 		}else{
 			return false;
@@ -53,5 +56,13 @@ public class SessionService {
 		sessionBean.setSessionId(sessionId);
 		sessionBean.setDieTime(date);
 		return sessionDao.update(sessionBean);
+	}
+	
+	public boolean delete(String sessionId){
+		return sessionDao.delete(sessionId);
+	}
+	
+	public SessionBean get(String sessionId){
+		return sessionDao.findBySessionId(sessionId);
 	}
 }

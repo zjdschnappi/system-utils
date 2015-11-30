@@ -30,27 +30,22 @@ public class SessionDao {
 		}
 	};
 
-	public boolean delete(final SessionBean sessionBean) {
-		SessionBean sessionChan = (SessionBean) hibernateTemplete
-				.execute(new HibernateCallback() {
+	public boolean delete(final String sessionId) {
+		 Boolean type = (Boolean) hibernateTemplete.execute(new HibernateCallback() {
 					@Override
 					public Object doInHibernate(Session session)
 							throws HibernateException, SQLException {
 						String hql = "delete from SessionBean where sessionId = ?";
 						Query query = session.createQuery(hql);
-						query.setString(0, sessionBean.getSessionId());
+						query.setString(0, sessionId);
 						if (query.executeUpdate() == 1) {
-							return sessionBean;
+							return new Boolean(true);
 						} else {
-							return null;
+							return new Boolean(false);
 						}
 					}
 				});
-		if(sessionChan == null){
-			return false;
-		}else{
-			return true;
-		}
+		return type.booleanValue();
 	};
 
 	public SessionBean update(final SessionBean sessionBean) {

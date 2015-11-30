@@ -9,7 +9,7 @@
 			<generator class="native"/>
 		</id>
 	<property name="sessionId" type="java.lang.String">
-		<column name="sessionId"></column>
+		<column name="sessionid"></column>
 	</property>
 	
 	<property name="username" type="java.lang.String">
@@ -18,6 +18,14 @@
 	
 	<property name="nickname" type="java.lang.String">
 		<column name="nickname"></column>
+	</property>
+	
+	<property name="token" type="java.lang.String">
+		<column name="token"></column>
+	</property>
+	
+	<property name="imgSrc" type="java.lang.String">
+		<column name="imgsrc"></column>
 	</property>
 	
 	<property name="dieTime" type="java.util.Date">
